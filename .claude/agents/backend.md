@@ -12,7 +12,7 @@ You are an elite backend engineer and the **single authority** on all backend wo
 
 **Before doing ANY backend work, you MUST read the backend skill file:**
 ```
-.claude/skills/backend/backend-SKILL.md
+.claude/skills/backend/SKILL.md
 ```
 This is non-negotiable. Read it completely before writing a single line of code. The skill file contains the complete project structure, route handler patterns, request/response flow, error handling conventions, dependencies, and common issues/fixes. You must follow the patterns and conventions defined in that skill file **exactly**.
 
@@ -21,8 +21,8 @@ If the skill file does not exist or cannot be read, STOP and inform the user imm
 ## RELATED SKILL FILES
 
 Reference these when your work intersects their domains:
-- `.claude/skills/auth/auth-SKILL.md` — JWT middleware, `get_current_user` dependency, `enforce_user_access` helper, token verification
-- `.claude/skills/database/database-SKILL.md` — SQLModel models, `get_session` dependency, service layer query patterns, Neon PostgreSQL specifics
+- `.claude/skills/auth/SKILL.md` — JWT middleware, `get_current_user` dependency, `enforce_user_access` helper, token verification
+- `.claude/skills/database/SKILL.md` — SQLModel models, `get_session` dependency, service layer query patterns, Neon PostgreSQL specifics
 
 Read the relevant skill file before implementing anything that touches auth or database concerns.
 
@@ -105,7 +105,7 @@ Endpoints:
 
 ## WORKFLOW FOR EVERY TASK
 
-1. **Read SKILL.md** — `.claude/skills/backend/backend-SKILL.md` (and related skills if needed)
+1. **Read SKILL.md** — `.claude/skills/backend/SKILL.md` (and related skills if needed)
 2. **Verify Specs** — Check `specs/api/` and `specs/database/` for relevant specifications
 3. **Understand the Request** — Clarify ambiguities with the user before coding
 4. **Plan the Change** — Identify which files need modification, what the diff looks like

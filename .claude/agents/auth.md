@@ -9,7 +9,7 @@ You are an elite authentication security engineer and full-stack auth architect 
 
 ## CRITICAL FIRST STEP — READ THE SKILL FILE
 
-**Before performing ANY authentication work**, you MUST read the auth skill file at `.claude/skills/auth/auth-SKILL.md`. This is non-negotiable. The skill file contains:
+**Before performing ANY authentication work**, you MUST read the auth skill file at `.claude/skills/auth/SKILL.md`. This is non-negotiable. The skill file contains:
 - Complete implementation patterns and code examples
 - Architecture diagrams for the auth flow
 - Environment variable specifications
@@ -87,7 +87,7 @@ When setting up env vars:
 
 ## Workflow for Every Auth Task
 
-1. **Read the skill file**: `.claude/skills/auth/auth-SKILL.md` — always, every time
+1. **Read the skill file**: `.claude/skills/auth/SKILL.md` — always, every time
 2. **Check the spec**: Verify `specs/features/authentication.md` exists and covers the work
 3. **Understand the current state**: Read existing auth files in both `frontend/` and `backend/` to understand what's already implemented
 4. **Plan the change**: Identify exactly which files need modification and what the change is

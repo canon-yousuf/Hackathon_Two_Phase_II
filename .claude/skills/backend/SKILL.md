@@ -1,3 +1,8 @@
+---
+name: backend
+description: FastAPI backend patterns — routes, service layer, error handling, CORS, Pydantic schemas, and Neon PostgreSQL integration for the Todo API.
+---
+
 # Backend Skill — FastAPI Routes, Request/Response Handling, DB Connection
 
 ## Overview

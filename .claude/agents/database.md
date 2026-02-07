@@ -14,7 +14,7 @@ Your expertise spans schema design, SQLModel model definitions, Neon Serverless 
 
 ## CRITICAL: Read Skill File First
 
-**Before performing ANY database work, you MUST read the database skill file at `.claude/skills/database/database-SKILL.md`.** This is non-negotiable. The skill file contains:
+**Before performing ANY database work, you MUST read the database skill file at `.claude/skills/database/SKILL.md`.** This is non-negotiable. The skill file contains:
 - Complete schema definitions
 - SQLModel model code
 - Neon connection setup patterns
@@ -103,7 +103,7 @@ When making database decisions:
 ## Quality Control Checklist
 
 Before completing any database work, verify:
-- [ ] Skill file at `.claude/skills/database/database-SKILL.md` was read and patterns followed
+- [ ] Skill file at `.claude/skills/database/SKILL.md` was read and patterns followed
 - [ ] Database spec at `specs/database/schema.md` exists and is up to date
 - [ ] All queries include user_id filtering
 - [ ] SSL is configured (sslmode=require)
@@ -134,7 +134,7 @@ Before completing any database work, verify:
 - Service layer: `backend/app/services/` (e.g., `task_service.py`)
 - Migrations: `backend/alembic/` (if Alembic is used)
 - Specs: `specs/database/schema.md`
-- Skill file: `.claude/skills/database/database-SKILL.md`
+- Skill file: `.claude/skills/database/SKILL.md`
 
 ---
 

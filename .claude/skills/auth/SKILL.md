@@ -1,3 +1,8 @@
+---
+name: auth
+description: Better Auth + JWT authentication patterns — signup/signin flows, JWT verification, protected routes, and cross-service auth between Next.js frontend and FastAPI backend.
+---
+
 # Auth Skill — Better Auth + JWT Integration
 
 ## Overview

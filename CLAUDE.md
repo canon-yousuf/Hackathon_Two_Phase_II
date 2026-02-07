@@ -70,10 +70,10 @@ Hackathon_Two_Phase_II/
 │   │   ├── auth.md
 │   │   └── testing.md
 │   └── skills/                # Domain skill files
-│       ├── frontend/frontend-SKILL.md
-│       ├── backend/backend-SKILL.md
-│       ├── database/database-SKILL.md
-│       └── auth/auth-SKILL.md
+│       ├── frontend/SKILL.md
+│       ├── backend/SKILL.md
+│       ├── database/SKILL.md
+│       └── auth/SKILL.md
 ├── .specify/                  # Spec-Kit Plus templates and scripts
 │   ├── memory/constitution.md
 │   └── templates/
@@ -109,10 +109,10 @@ Each agent MUST read its skill file before doing any work:
 
 | Agent | Skill File Path |
 |-------|----------------|
-| frontend | `.claude/skills/frontend/frontend-SKILL.md` |
-| backend | `.claude/skills/backend/backend-SKILL.md` |
-| database | `.claude/skills/database/database-SKILL.md` |
-| auth | `.claude/skills/auth/auth-SKILL.md` |
+| frontend | `.claude/skills/frontend/SKILL.md` |
+| backend | `.claude/skills/backend/SKILL.md` |
+| database | `.claude/skills/database/SKILL.md` |
+| auth | `.claude/skills/auth/SKILL.md` |
 
 ---
 

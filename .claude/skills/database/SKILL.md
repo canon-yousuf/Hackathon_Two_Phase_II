@@ -1,3 +1,8 @@
+---
+name: database
+description: Neon Serverless PostgreSQL + SQLModel patterns — schema design, models, connection setup, migrations, indexing, query patterns, and service layer for the Todo app.
+---
+
 # Database Skill — Neon Serverless PostgreSQL + SQLModel
 
 ## Overview
