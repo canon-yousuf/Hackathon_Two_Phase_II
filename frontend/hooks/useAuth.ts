@@ -5,11 +5,19 @@ export function useAuth() {
   const session = authClient.useSession();
 
   const signUp = async (email: string, password: string, name: string) => {
-    return await authClient.signUp.email({ email, password, name });
+    const result = await authClient.signUp.email({ email, password, name });
+    if (!result.error) {
+      await authClient.getSession();
+    }
+    return result;
   };
 
   const signIn = async (email: string, password: string) => {
-    return await authClient.signIn.email({ email, password });
+    const result = await authClient.signIn.email({ email, password });
+    if (!result.error) {
+      await authClient.getSession();
+    }
+    return result;
   };
 
   const signOut = async () => {

@@ -24,6 +24,7 @@ export default function LoginForm() {
         setError(result.error.message || "Invalid email or password");
       } else {
         router.push("/dashboard");
+        router.refresh();
       }
     } catch {
       setError("Invalid email or password");

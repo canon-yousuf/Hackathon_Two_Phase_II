@@ -1,20 +1,36 @@
+import logging
 import os
 
 import jwt
+from jwt import PyJWKClient
 from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
+logger = logging.getLogger(__name__)
+
 security = HTTPBearer()
-BETTER_AUTH_SECRET = os.environ.get("BETTER_AUTH_SECRET", "")
+
+JWKS_URL = os.environ.get(
+    "BETTER_AUTH_JWKS_URL",
+    "http://localhost:3000/api/auth/jwks",
+)
+
+_jwk_client = PyJWKClient(JWKS_URL, cache_keys=True)
 
 
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
 ) -> dict:
-    """Verify JWT token and return user payload."""
+    """Verify JWT token from Better Auth using JWKS (EdDSA/Ed25519)."""
     token = credentials.credentials
     try:
-        payload = jwt.decode(token, BETTER_AUTH_SECRET, algorithms=["HS256"])
+        signing_key = _jwk_client.get_signing_key_from_jwt(token)
+        payload = jwt.decode(
+            token,
+            signing_key.key,
+            algorithms=["EdDSA"],
+            options={"verify_aud": False},
+        )
         user_id = payload.get("sub")
         if not user_id:
             raise HTTPException(

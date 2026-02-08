@@ -31,6 +31,7 @@ export default function SignupForm() {
         setError(result.error.message || "Signup failed. Please try again.");
       } else {
         router.push("/dashboard");
+        router.refresh();
       }
     } catch {
       setError("Signup failed. Please try again.");
