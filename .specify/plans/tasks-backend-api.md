@@ -19,7 +19,7 @@
 
 **Purpose**: Foundation is already implemented. Verify existing code and confirm no changes needed.
 
-- [ ] T001 Verify existing foundation files are intact: `backend/app/db.py`, `backend/app/config.py`, `backend/app/models/task.py`, `backend/app/middleware/auth.py`
+- [x] T001 Verify existing foundation files are intact: `backend/app/db.py`, `backend/app/config.py`, `backend/app/models/task.py`, `backend/app/middleware/auth.py`
 
 **Checkpoint**: Foundation verified — service layer and routes can be built.
 
@@ -31,7 +31,7 @@
 
 **Agent**: Database Agent with `.claude/skills/database/SKILL.md`
 
-- [ ] T002 [P] Create `get_tasks()` and `get_task()` service functions in `backend/app/services/task_service.py`
+- [x] T002 [P] Create `get_tasks()` and `get_task()` service functions in `backend/app/services/task_service.py`
   - `get_tasks(session: Session, user_id: str, status: str = "all", sort: str = "created") -> list[Task]`
     - `SELECT * FROM tasks WHERE user_id = ?`
     - If status == "pending": add `WHERE completed = False`
@@ -43,13 +43,13 @@
     - `SELECT * FROM tasks WHERE id = ? AND user_id = ?`
     - Return `None` if not found
 
-- [ ] T003 [P] Create `create_task()` service function in `backend/app/services/task_service.py`
+- [x] T003 [P] Create `create_task()` service function in `backend/app/services/task_service.py`
   - `create_task(session: Session, user_id: str, data: TaskCreate) -> Task`
   - Instantiate `Task(user_id=user_id, title=data.title, description=data.description)`
   - `session.add(task)`, `session.commit()`, `session.refresh(task)`
   - Return the created task
 
-- [ ] T004 [P] Create `update_task()` service function in `backend/app/services/task_service.py`
+- [x] T004 [P] Create `update_task()` service function in `backend/app/services/task_service.py`
   - `update_task(session: Session, user_id: str, task_id: int, data: TaskUpdate, fields_set: set[str]) -> Task | None`
   - Call `get_task()` — return `None` if not found
   - Only update fields present in `fields_set` (from `data.model_fields_set`)
@@ -58,13 +58,13 @@
   - Set `task.updated_at = datetime.now(timezone.utc)`
   - `session.add(task)`, `session.commit()`, `session.refresh(task)`
 
-- [ ] T005 [P] Create `delete_task()` service function in `backend/app/services/task_service.py`
+- [x] T005 [P] Create `delete_task()` service function in `backend/app/services/task_service.py`
   - `delete_task(session: Session, user_id: str, task_id: int) -> bool`
   - Call `get_task()` — return `False` if not found
   - `session.delete(task)`, `session.commit()`
   - Return `True`
 
-- [ ] T006 [P] Create `toggle_complete()` service function in `backend/app/services/task_service.py`
+- [x] T006 [P] Create `toggle_complete()` service function in `backend/app/services/task_service.py`
   - `toggle_complete(session: Session, user_id: str, task_id: int) -> Task | None`
   - Call `get_task()` — return `None` if not found
   - `task.completed = not task.completed`
@@ -85,7 +85,7 @@
 
 ### Implementation
 
-- [ ] T007 [US1] Create route handler `list_tasks` in `backend/app/routes/tasks.py`
+- [x] T007 [US1] Create route handler `list_tasks` in `backend/app/routes/tasks.py`
   - Create `router = APIRouter(prefix="/api/{user_id}/tasks", tags=["tasks"])`
   - `@router.get("", response_model=list[TaskResponse])`
   - Parameters: `user_id: str`, `status_filter: str = Query("all", alias="status", pattern="^(all|pending|completed)$")`, `sort: str = Query("created", pattern="^(created|title)$")`, `session: Session = Depends(get_session)`, `current_user: dict = Depends(get_current_user)`
@@ -105,7 +105,7 @@
 
 ### Implementation
 
-- [ ] T008 [US2] Add route handler `create_task` in `backend/app/routes/tasks.py`
+- [x] T008 [US2] Add route handler `create_task` in `backend/app/routes/tasks.py`
   - `@router.post("", response_model=TaskResponse, status_code=status.HTTP_201_CREATED)`
   - Parameters: `user_id: str`, `data: TaskCreate`, `session`, `current_user`
   - Call `enforce_user_access`, return `task_service.create_task(session, user_id, data)`
@@ -122,7 +122,7 @@
 
 ### Implementation
 
-- [ ] T009 [US3] Add route handler `get_task` in `backend/app/routes/tasks.py`
+- [x] T009 [US3] Add route handler `get_task` in `backend/app/routes/tasks.py`
   - `@router.get("/{task_id}", response_model=TaskResponse)`
   - Parameters: `user_id: str`, `task_id: int`, `session`, `current_user`
   - Call `enforce_user_access`, call `task_service.get_task(session, user_id, task_id)`
@@ -140,7 +140,7 @@
 
 ### Implementation
 
-- [ ] T010 [US4] Add route handler `update_task` in `backend/app/routes/tasks.py`
+- [x] T010 [US4] Add route handler `update_task` in `backend/app/routes/tasks.py`
   - `@router.put("/{task_id}", response_model=TaskResponse)`
   - Parameters: `user_id: str`, `task_id: int`, `data: TaskUpdate`, `session`, `current_user`
   - Call `enforce_user_access`
@@ -160,7 +160,7 @@
 
 ### Implementation
 
-- [ ] T011 [US5] Add route handler `delete_task` in `backend/app/routes/tasks.py`
+- [x] T011 [US5] Add route handler `delete_task` in `backend/app/routes/tasks.py`
   - `@router.delete("/{task_id}", status_code=status.HTTP_204_NO_CONTENT)`
   - Parameters: `user_id: str`, `task_id: int`, `session`, `current_user`
   - Call `enforce_user_access`, call `task_service.delete_task(session, user_id, task_id)`
@@ -179,7 +179,7 @@
 
 ### Implementation
 
-- [ ] T012 [US6] Add route handler `toggle_complete` in `backend/app/routes/tasks.py`
+- [x] T012 [US6] Add route handler `toggle_complete` in `backend/app/routes/tasks.py`
   - `@router.patch("/{task_id}/complete", response_model=TaskResponse)`
   - Parameters: `user_id: str`, `task_id: int`, `session`, `current_user`
   - Call `enforce_user_access`, call `task_service.toggle_complete(session, user_id, task_id)`
@@ -195,7 +195,7 @@
 
 **Agent**: Backend Agent with `.claude/skills/backend/SKILL.md`
 
-- [ ] T013 [US7] Register task router and add global exception handler in `backend/app/main.py`
+- [x] T013 [US7] Register task router and add global exception handler in `backend/app/main.py`
   - Add import: `from app.routes.tasks import router as tasks_router`
   - Add import: `from fastapi import Request` and `from fastapi.responses import JSONResponse`
   - Add: `app.include_router(tasks_router)` after CORS middleware
@@ -218,7 +218,7 @@
 
 **Purpose**: End-to-end verification using Swagger UI and curl commands.
 
-- [ ] T014 Run quickstart verification from `.specify/plans/quickstart-backend-api.md`
+- [x] T014 Run quickstart verification from `.specify/plans/quickstart-backend-api.md`
   - Start server: `cd backend && uvicorn app.main:app --reload --port 8000`
   - Verify health check: `GET /health` → 200
   - Verify Swagger UI loads at `/docs`
